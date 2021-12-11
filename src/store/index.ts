@@ -1,5 +1,11 @@
 import Vue from "vue";
 import Vuex from "vuex";
+const axios = require('axios').default;
+
+const usersApi = axios.create({
+  baseURL: process.env.VUE_APP_USERS_API_URL,
+  headers: { "Content-Type": "application/json" },
+});
 
 Vue.use(Vuex);
 
@@ -40,8 +46,10 @@ export default new Vuex.Store({
     }
   },
   actions: {
-    register({ commit }, payload: registrationForm) {
-      console.log(payload)
+    async register({ commit }, payload: registrationForm) {
+      const user = await usersApi.post("/crearUsuario", payload)
+      commit("SET_USER", user)
+
     }
   },
   modules: {},
