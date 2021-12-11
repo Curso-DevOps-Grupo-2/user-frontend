@@ -20,6 +20,10 @@ interface userModel {
 }
 
 interface registrationForm extends userModel { }
+interface loginForm {
+  correo: string,
+  password: string
+}
 
 export default new Vuex.Store({
   state: {
@@ -50,6 +54,10 @@ export default new Vuex.Store({
       const user = await usersApi.post("/crearUsuario", payload)
       commit("SET_USER", user)
 
+    },
+    async login({ commit }, payload: loginForm) {
+      const user = await usersApi.post("/login", payload)
+      commit("SET_USER", user)
     }
   },
   modules: {},
