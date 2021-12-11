@@ -22,7 +22,15 @@ import Vue from "vue";
 import { mapActions } from "vuex";
 
 export default Vue.extend({
-  data() {
+  data: (): {
+    rut: string;
+    nombre: string;
+    edad: number | null;
+    prevision: string;
+    nacionalidad: string;
+    comuna: string;
+    correo: string;
+  } => {
     return {
       rut: "",
       nombre: "",
